@@ -22,5 +22,5 @@ Host someinternalhost
 Подключаемся командой `ssh someinternalhost`
 
 Подключение по vpn:  
-bastion_IP = 35.241.140.83
+bastion_IP = 35.241.140.83  
 someinternalhost_IP = 10.132.0.3
