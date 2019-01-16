@@ -27,7 +27,7 @@ someinternalhost_IP = 10.132.0.3
 
 ### ДЗ №4 Основные сервисы GCP
 
-testapp_IP = 34.76.57.31
+testapp_IP = 34.76.57.31  
 testapp_port = 9292
 
 Запуск инстанса с использованием startup_script:  
@@ -45,4 +45,11 @@ gcloud compute instances create reddit-app\
 Команда для создания правила firewall через cli:  
 ```bash
 gcloud compute --project=infra-226319 firewall-rules create default-puma-server --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:9292 --source-ranges=0.0.0.0/0 --target-tags=puma-server
+```
+
+### ДЗ №5 Работа с packer
+
+Для создания immutable образа воспользоваться командой:
+```bash
+packer build -var 'project_id=infra-#######' -var 'source_image_family=reddit-base' immutable.json
 ```

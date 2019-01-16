@@ -1,0 +1,15 @@
+[Unit]
+Description=Reddit
+After=network.target
+
+[Service]
+Type=forking
+User=appuser
+Group=appuser
+ExecStart=/usr/local/bin/puma --dir /home/appuser/reddit/ --pidfile /tmp/reddit.pid --daemon
+ExecStop=/bin/kill -HUP $MAINPID
+PIDFile=/tmp/reddit.pid
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
