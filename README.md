@@ -53,3 +53,24 @@ gcloud compute --project=infra-226319 firewall-rules create default-puma-server 
 ```bash
 packer build -var 'project_id=infra-#######' -var 'source_image_family=reddit-base' immutable.json
 ```
+
+### ДЗ №6 Работа с terraform. Часть 1.
+
+Создан файл main.cf описывающий необходимые ресурсы для создания инстанса приложения.  
+Создан файл outputs.tf для отображения нужных нам выходных переменных.  
+Переменные описаны в файле variables.tf и заданы в файле terraform.tfvars.  
+Применена конфигурация с помощью `terraform apply -auto-approve=true`
+
+Для добавления нескольких ключей ssh в метаданные проекта необходимо создать ресурс:
+
+```
+resource "google_compute_project_metadata" "default" {
+  metadata {
+     ssh-keys = "appuser1:${file(var.public_key_path)}appuser2:${file(var.public_key_path)}appuser3:${file(var.public_key_path)}"
+  }
+}
+```
+
+Проблемы с добавлением нескольких ssh-keys через terraform и веб-морду:  
+Terraform после `terraform apply` убирает все изменения, созданные вручную.  
+
