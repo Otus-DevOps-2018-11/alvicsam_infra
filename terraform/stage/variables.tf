@@ -36,10 +36,10 @@ variable db_disk_image {
 
 variable app_vm_name {
   description = "App instance name"
-  default     = "reddit-app-prod"
+  default     = "reddit-app-stage"
 }
 
 variable db_vm_name {
   description = "DB instance name"
-  default     = "reddit-db-prod"
+  default     = "reddit-db-stage"
 }
