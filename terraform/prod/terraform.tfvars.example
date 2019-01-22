@@ -1,0 +1,7 @@
+project = "infra-000000"
+private_key_path = "~/.ssh/appuser"
+public_key_path = "~/.ssh/appuser.pub"
+disk_image = "reddit-base" 
+zone = "europe-west1-b"
+app_vm_name = "reddit-app-prod"
+db_vm_name = "reddit-db-prod"
