@@ -74,3 +74,43 @@ resource "google_compute_project_metadata" "default" {
 Проблемы с добавлением нескольких ssh-keys через terraform и веб-морду:  
 Terraform после `terraform apply` убирает все изменения, созданные вручную.  
 
+### ДЗ №7 Работа с terraform. Часть 2.
+
+ - Созданы новые образы с помощью packer
+ - Файл main.tf разбит на несколько
+ - Собраны модули
+ - Изменен файервол
+ - Созданы окружения
+ - Для окружений введены дополнительные переменные именования вм
+ - Создан bucket
+ - Настроено хранение state в bucket, проверено
+
+storage-bucket.tf:  
+```
+provider "google" {
+  version = "1.4.0"
+  project = "${var.project}"
+  region  = "${var.region}"
+}
+
+module "storage-bucket" {
+  source  = "SweetOps/storage-bucket/google"
+  version = "0.1.1"
+  name = ["alvic-73902-bucket-prod", "alvic-73902-bucket-stage"]
+}
+
+output storage-bucket_url {
+  value = "${module.storage-bucket.url}"
+}
+```
+
+backend.tf (для stage):  
+```
+terraform {
+  backend "gcs" {
+    bucket  = "alvic-73902-bucket-stage"
+    prefix  = "terraform/state"
+  }
+}
+```
+
