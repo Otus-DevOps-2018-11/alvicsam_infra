@@ -113,4 +113,15 @@ terraform {
   }
 }
 ```
+### ДЗ №8 Работа с ansible. Часть 1.
 
+После выполнения `ansible app -m command -a 'rm -rf ~/reddit'` и запуска плейбука ansible вновь склонировал git репозиторий.
+Запуск ansible со статическим json инвентори:
+```bash
+ansible all -i static_inventory.json -m ping
+```
+Запуск ansible с динамическим json инвентори:
+```bash
+ansible all -i inventory.sh -m ping
+```
+В случае динамического json файла группы хостов, чайлдов должны задаваться словарем. Также скрипт, создающий инвентори, должен поддерживать операторы --list и --host <hostname>
