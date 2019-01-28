@@ -143,24 +143,14 @@ ansible all -i inventory.sh -m ping
 TFPATH=~/DevOps/alvicsam_infra/terraform/stage
 cd $TFPATH
 
-get_app_ext_ip(){
-        ip=`terraform output app_external_ip`
+get_vm_ip(){
+        ip=`terraform output $1`
         echo $ip
 }
 
-get_db_ext_ip(){
-        ip=`terraform output db_external_ip`
-        echo $ip
-}
-
-get_db_int_ip(){
-        ip=`terraform output db_internal_ip`
-        echo $ip
-}
-
-APP_IP=$(get_app_ext_ip)
-DB_IP=$(get_db_ext_ip)
-DB_INT_IP=$(get_db_int_ip)
+APP_IP=$(get_vm_ip "app_external_ip")
+DB_IP=$(get_vm_ip "db_external_ip")
+DB_INT_IP=$(get_vm_ip "db_internal_ip")
 
 echo -e {
 echo -e     "\t\"app\": {"
