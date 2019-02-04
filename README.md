@@ -1,4 +1,7 @@
 # alvicsam_infra
+
+[![Build Status](https://travis-ci.com/Otus-DevOps-2018-11/alvicsam_infra.svg?branch=master)](https://travis-ci.com/Otus-DevOps-2018-11/alvicsam_infra)
+
 alvicsam Infra repository
 
 ### ДЗ №3 Знакомство с облачной инфраструктурой
@@ -175,7 +178,7 @@ echo -e "\t}"
 echo -e }
 ```
 
-В переменную TFPATH заносится путь до terraform/stage или terraform/prod в зависимости от того, где была развернута инфраструктура.  
+В переменную TFPATH заносится путь до terraform/stage или terraform/prod в зависимости от того, где была развернута инфраструкт�
 Для дебага чудо-скрипта можно воспользоваться командой:  
 `ansible all -i dynamic_inventory.sh -m debug -a "var=db_host"`
 
